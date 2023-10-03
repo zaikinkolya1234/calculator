@@ -1,10 +1,14 @@
 import sys
 
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QGridLayout, QMainWindow, QPushButton
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QGridLayout, QMainWindow, QPushButton, QLineEdit
 
 
 class MyWindow(QMainWindow):
+
+    def update_text(self):
+        self.textLabel.setText(self.input_field.text())
+
     def __init__(self):
         QMainWindow.__init__(self)
 
@@ -12,14 +16,17 @@ class MyWindow(QMainWindow):
         self.setCentralWidget(central_widget)
         grid = QGridLayout()
         central_widget.setLayout(grid)
-        textLabel = QLabel()
-        textLabel.setText("Hello World!")
-        grid.addWidget(textLabel, 0, 0)
-        textLabel.setAlignment(Qt.AlignCenter)
+        self.input_field = QLineEdit()
+        grid.addWidget(self.input_field, 0, 0)
 
-        button = QPushButton('Push me!')
-        button.clicked.connect(lambda x: print('You pushed me!'))
-        grid.addWidget(button, 0, 1)
+        self.textLabel = QLabel()
+        self.textLabel.setText("Hello World!")
+        grid.addWidget(self.textLabel, 0, 1)
+        self.textLabel.setAlignment(Qt.AlignCenter)
+
+        button = QPushButton('Update!')
+        button.clicked.connect(self.update_text)
+        grid.addWidget(button, 0, 2)
 
         self.setGeometry(50, 50, 300, 100)
         self.setWindowTitle("PyQt Example")
