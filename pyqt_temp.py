@@ -28,7 +28,7 @@ class MyWindow(QMainWindow):
         button.clicked.connect(self.update_text)
         grid.addWidget(button, 0, 2)
 
-        self.setGeometry(50, 50, 300, 100)
+        self.setGeometry(50, 50, 600, 200)
         self.setWindowTitle("PyQt Example")
         self.show()
 
