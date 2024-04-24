@@ -24,7 +24,7 @@ class MyWindow(QMainWindow):
         grid.addWidget(self.textLabel, 0, 1)
         self.textLabel.setAlignment(Qt.AlignCenter)
 
-        button = QPushButton('Update!')
+        button = QPushButton('обновить')
         button.clicked.connect(self.update_text)
         grid.addWidget(button, 0, 2)
 
