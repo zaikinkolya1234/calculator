@@ -7,7 +7,9 @@ from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QGridLayout, QMainWin
 class MyWindow(QMainWindow):
 
     def update_text(self):
-        self.textLabel.setText(self.input_field.text())
+        a = self.input_field.text()
+        ans = eval(a)
+        self.textLabel.setText(str(ans))
 
     def __init__(self):
         QMainWindow.__init__(self)
@@ -17,16 +19,21 @@ class MyWindow(QMainWindow):
         grid = QGridLayout()
         central_widget.setLayout(grid)
         self.input_field = QLineEdit()
-        grid.addWidget(self.input_field, 0, 0)
+        grid.addWidget(self.input_field, 1, 0)
 
         self.textLabel = QLabel()
-        self.textLabel.setText("Hello World!")
-        grid.addWidget(self.textLabel, 0, 1)
+        self.textLabel.setText("")
+        grid.addWidget(self.textLabel, 2, 1)
         self.textLabel.setAlignment(Qt.AlignCenter)
 
-        button = QPushButton('обновить')
+        self.textLabe0 = QLabel()
+        self.textLabe0.setText("ответ")
+        grid.addWidget(self.textLabe0, 2, 0)
+        self.textLabe0.setAlignment(Qt.AlignCenter)
+
+        button = QPushButton('решить')
         button.clicked.connect(self.update_text)
-        grid.addWidget(button, 0, 2)
+        grid.addWidget(button, 1, 1)
 
         self.setGeometry(50, 50, 600, 200)
         self.setWindowTitle("PyQt Example")
